@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE files
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Data files (optional, but keeping golden_eval_labelled.csv as required by instructions. The raw 1.5GB Kaggle dataset shouldn't be committed)
+data/spotify_threads.csv
+data/sample.csv
