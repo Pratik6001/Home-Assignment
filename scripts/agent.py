@@ -22,7 +22,7 @@ class SupportAgent:
         print(f"Initializing Support Agent with {max_corpus_size} historical interactions...")
         self.corpus_df = pd.read_csv(corpus_path).head(max_corpus_size)
         self.embedding_model = "models/gemini-embedding-2"
-        self.gen_model = genai.GenerativeModel('gemini-3.5-flash')
+        self.gen_model = genai.GenerativeModel('gemini-3.6-flash')
         
         # Build the RAG Corpus
         self._build_vector_store()
