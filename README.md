@@ -63,4 +63,9 @@ The evaluation metric uses an LLM-as-a-judge (Gemini 3.6 Flash). While LLM judge
 - **RAG via Cosine Similarity in Numpy:** Avoided heavy vector databases (Chroma/Pinecone) to keep the repository extremely lightweight and dependency-free.
 - **Batched API Calls:** Implemented batching (20 at a time) for Golden Set labelling to bypass strict Free Tier API Rate limits (5 RPM).
 - **LLM-as-Judge for Golden Set:** Used an LLM to generate the 200 ground-truth labels for intents/escalation to save hours of manual labelling, enabling rapid iteration on the agent prompt instead.
-- **Structured JSON Outputs:** Forced the LLM to output pure JSON (bypassing strict `response_schema` features that are unstable across SDK versions) to ensure pipeline reliability.
+- **Structured JSON Outputs:** Forced the LLM to output pure JSON via standard prompt constraints to ensure pipeline reliability across varying SDK versions.
+- **Removed Multi-Turn Memory:** Chose to process only the immediate customer tweet rather than the whole thread history to reduce context window noise and focus strictly on first-touch triage.
+- **Binary Escalation Flag:** Formatted the escalation target as a simple `boolean` instead of a complex routing tree, as early-stage AI implementations should fail-safe to human routing rather than attempting risky auto-resolution of edge cases.
+- **Custom Eval Metric for Escalation (F1 Score):** Used F1 Score instead of raw accuracy for escalation because escalation instances are minority classes (imbalanced dataset); F1 properly punishes false positives (over-escalation).
+- **Interactive Testing Script:** Built a `test_bot.py` script that isolates the generation pipeline from the massive evaluation harness, allowing reviewers to verify functionality interactively without hitting Free Tier API quotas.
+- **Excluded Pydantic from Generation Config:** Despite SDK support for passing Pydantic BaseModels directly to `response_schema`, I manually enforced JSON parsing via string cleaning to avoid version compatibility bugs in deprecated SDKs.
