@@ -1,4 +1,4 @@
-# Hiver AI Support Agent - @SpotifyCares
+# Customer Support AI Agent - @SpotifyCares
 
 This repository contains a full pipeline for an AI Customer Support Agent that handles inquiries for `@SpotifyCares` on Twitter. The agent classifies intents, decides whether to auto-handle or escalate to a human agent, and drafts a reply grounded in historical brand responses using Retrieval-Augmented Generation (RAG).
 
